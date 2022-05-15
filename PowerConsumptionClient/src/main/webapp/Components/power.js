@@ -1,9 +1,30 @@
 $(document).ready(function () {
   if ($("#alertSuccess").text().trim() == "") {
     $("#alertSuccess").hide();
+	$("#divform").hide();
   }
 
   $("#alertError").hide();
+});
+
+//hide, show and reset the form
+$(document).ready(function(){
+  $("#hide").click(function(){
+    $("#divform").hide();
+ 	 //resetting the form
+  	$("#hidItemIDSave").val("");
+  	$("#formItem")[0].reset();
+  });
+
+  $("#show").click(function(){
+    $("#divform").show();
+  });
+
+  $("#reset").click(function(){
+     //resetting the form
+  	$("#hidItemIDSave").val("");
+  	$("#formItem")[0].reset();
+  });
 });
 
 // SAVE
@@ -76,6 +97,7 @@ function onItemSaveComplete(response, status) {
 //to identify the update button we didn't use an id we used a class
 $(document).on("click", ".btnUpdate", function (event) {
   //get item id from the data-itemid attribute in update button
+	$("#divform").show();
 
   $("#hidItemIDSave").val($(this).closest("tr").find("#hidItemIDUpdate").val());
   //get data from <td> element
